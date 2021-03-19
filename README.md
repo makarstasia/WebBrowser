@@ -1,12 +1,15 @@
-﻿# WebBrowser
- # __WebBrowser__
+# __WebBrowser__
 
 19.03.2021
 ---
 Makarshina Anastasia
+
 Applied math
+
 1 course
+
 group 09-021
+
 ---
 ## Hotkeys
 
