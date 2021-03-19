@@ -16,11 +16,10 @@ namespace WebBrow
         public MainForm()
         {
             InitializeComponent();
-            KeyPreview = true;
             KeyDown += (s,e) => { if (e.KeyValue == (char)Keys.Enter) goButton.PerformClick(); };
             KeyDown += (s, e) => { if (e.KeyValue == (char)Keys.F5) plusButton.PerformClick(); };
             tekylistBox.Items.AddRange(File.ReadAllLines("save-pages.txt"));
-
+            richTextBox1.Text = File.ReadAllText("history.txt");
         }
         private void backButton_Click(object sender, EventArgs e)
         {
@@ -64,25 +63,38 @@ namespace WebBrow
 
         private void goButton_Click(object sender, EventArgs e)
         {
-            int index = tekylistBox.SelectedIndex;
-            string namesite = poisktoolStripTextBox1.Text;
-            try
-            {
-                Uri uri = new Uri(namesite);
-                webControl1.Source = uri;
-                tekylistBox.Items[tekylistBox.SelectedIndex] = namesite;
+           if( tekylistBox.Text.Contains("https://") || tekylistBox.Text.Contains("http://") )
+           {
+                int index = tekylistBox.SelectedIndex;
+                string namesite = poisktoolStripTextBox1.Text;
+                try
+                {
+                    Uri uri = new Uri(namesite);
+                    webControl1.Source = uri;
+                    tekylistBox.Items[tekylistBox.SelectedIndex] = namesite;
+                }
+                catch (Exception)
+                {
+                    Uri uri = new Uri("https://ya.ru");
+                    webControl1.Source = uri;
+                    MessageBox.Show("Неверный адрес");
+                }
+                File.AppendAllText("history.txt", poisktoolStripTextBox1.Text + "\n");
+                richTextBox1.Text = File.ReadAllText("history.txt");
             }
-            catch (Exception)
+            else
             {
-                Uri uri = new Uri("https://ya.ru");
+                Uri uri = new Uri("https://yandex.ru/search/?text=" + poisktoolStripTextBox1.Text);
                 webControl1.Source = uri;
-                MessageBox.Show("Неверный адрес");
+                File.AppendAllText("history.txt", "yanfex " + poisktoolStripTextBox1.Text + "\n");
+                richTextBox1.Text = File.ReadAllText("history.txt");
             }
+
         }
 
         private void сохранитьВкладкуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            File.AppendAllText("save-pages.txt", tekylistBox.Items[tekylistBox.SelectedIndex].ToString());
+            File.AppendAllText("save-pages.txt", tekylistBox.Items[tekylistBox.SelectedIndex].ToString() + "\n");
             savelistBox.Items.Add(tekylistBox.Items[tekylistBox.SelectedIndex].ToString());
         }
 
@@ -96,6 +108,16 @@ namespace WebBrow
             savelistBox.Items.RemoveAt(savelistBox.SelectedIndex);
         }
 
-        
+        private void poisktoolStripTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string[] history_searche = File.ReadAllLines("history.txt");
+            AutoCompleteStringCollection str = new AutoCompleteStringCollection();
+            foreach(string ste in history_searche)
+            {
+                var ste2 = ste.Replace("yandex", "").Trim();
+                str.Add(ste2);
+            }
+            poisktoolStripTextBox1.AutoCompleteCustomSource = str;
+        }
     }
 }

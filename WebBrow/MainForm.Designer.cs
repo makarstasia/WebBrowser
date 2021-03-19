@@ -51,6 +51,8 @@ namespace WebBrow
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.удалитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.webControl1 = new Awesomium.Windows.Forms.WebControl(this.components);
+            this.historyPage = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.VkladkiControl.SuspendLayout();
@@ -58,6 +60,7 @@ namespace WebBrow
             this.contextMenuStrip1.SuspendLayout();
             this.savePage.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
+            this.historyPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -115,9 +118,12 @@ namespace WebBrow
             // 
             // poisktoolStripTextBox1
             // 
+            this.poisktoolStripTextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.poisktoolStripTextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.poisktoolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.poisktoolStripTextBox1.Name = "poisktoolStripTextBox1";
             this.poisktoolStripTextBox1.Size = new System.Drawing.Size(400, 33);
+            this.poisktoolStripTextBox1.TextChanged += new System.EventHandler(this.poisktoolStripTextBox1_TextChanged);
             // 
             // goButton
             // 
@@ -141,20 +147,21 @@ namespace WebBrow
             // 
             this.panel1.Controls.Add(this.VkladkiControl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(786, 33);
+            this.panel1.Location = new System.Drawing.Point(654, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 417);
+            this.panel1.Size = new System.Drawing.Size(332, 417);
             this.panel1.TabIndex = 1;
             // 
             // VkladkiControl
             // 
             this.VkladkiControl.Controls.Add(this.TekyPage);
             this.VkladkiControl.Controls.Add(this.savePage);
+            this.VkladkiControl.Controls.Add(this.historyPage);
             this.VkladkiControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VkladkiControl.Location = new System.Drawing.Point(0, 0);
             this.VkladkiControl.Name = "VkladkiControl";
             this.VkladkiControl.SelectedIndex = 0;
-            this.VkladkiControl.Size = new System.Drawing.Size(200, 417);
+            this.VkladkiControl.Size = new System.Drawing.Size(332, 417);
             this.VkladkiControl.TabIndex = 0;
             // 
             // TekyPage
@@ -163,7 +170,7 @@ namespace WebBrow
             this.TekyPage.Location = new System.Drawing.Point(4, 29);
             this.TekyPage.Name = "TekyPage";
             this.TekyPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TekyPage.Size = new System.Drawing.Size(192, 384);
+            this.TekyPage.Size = new System.Drawing.Size(324, 384);
             this.TekyPage.TabIndex = 0;
             this.TekyPage.Text = "Текущие вкладки";
             this.TekyPage.UseVisualStyleBackColor = true;
@@ -176,7 +183,7 @@ namespace WebBrow
             this.tekylistBox.ItemHeight = 20;
             this.tekylistBox.Location = new System.Drawing.Point(3, 3);
             this.tekylistBox.Name = "tekylistBox";
-            this.tekylistBox.Size = new System.Drawing.Size(186, 378);
+            this.tekylistBox.Size = new System.Drawing.Size(318, 378);
             this.tekylistBox.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -208,7 +215,7 @@ namespace WebBrow
             this.savePage.Location = new System.Drawing.Point(4, 29);
             this.savePage.Name = "savePage";
             this.savePage.Padding = new System.Windows.Forms.Padding(3);
-            this.savePage.Size = new System.Drawing.Size(192, 384);
+            this.savePage.Size = new System.Drawing.Size(324, 384);
             this.savePage.TabIndex = 1;
             this.savePage.Text = "Сохраненные";
             this.savePage.UseVisualStyleBackColor = true;
@@ -221,7 +228,7 @@ namespace WebBrow
             this.savelistBox.ItemHeight = 20;
             this.savelistBox.Location = new System.Drawing.Point(3, 3);
             this.savelistBox.Name = "savelistBox";
-            this.savelistBox.Size = new System.Drawing.Size(186, 378);
+            this.savelistBox.Size = new System.Drawing.Size(318, 378);
             this.savelistBox.TabIndex = 0;
             // 
             // contextMenuStrip2
@@ -243,8 +250,29 @@ namespace WebBrow
             // 
             this.webControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webControl1.Location = new System.Drawing.Point(0, 33);
-            this.webControl1.Size = new System.Drawing.Size(786, 417);
+            this.webControl1.Size = new System.Drawing.Size(654, 417);
             this.webControl1.TabIndex = 2;
+            // 
+            // historyPage
+            // 
+            this.historyPage.Controls.Add(this.richTextBox1);
+            this.historyPage.Location = new System.Drawing.Point(4, 29);
+            this.historyPage.Name = "historyPage";
+            this.historyPage.Size = new System.Drawing.Size(324, 384);
+            this.historyPage.TabIndex = 2;
+            this.historyPage.Text = "История";
+            this.historyPage.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(324, 384);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // MainForm
             // 
@@ -257,7 +285,6 @@ namespace WebBrow
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "MBrowser";
-            
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -266,6 +293,7 @@ namespace WebBrow
             this.contextMenuStrip1.ResumeLayout(false);
             this.savePage.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
+            this.historyPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,6 +321,8 @@ namespace WebBrow
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem1;
+        private System.Windows.Forms.TabPage historyPage;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
