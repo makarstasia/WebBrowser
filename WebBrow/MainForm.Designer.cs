@@ -50,9 +50,10 @@ namespace WebBrow
             this.savelistBox = new System.Windows.Forms.ListBox();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.удалитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.webControl1 = new Awesomium.Windows.Forms.WebControl(this.components);
             this.historyPage = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.cleanbutton = new System.Windows.Forms.Button();
+            this.webControl1 = new Awesomium.Windows.Forms.WebControl(this.components);
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.VkladkiControl.SuspendLayout();
@@ -246,16 +247,10 @@ namespace WebBrow
             this.удалитьToolStripMenuItem1.Text = "Удалить";
             this.удалитьToolStripMenuItem1.Click += new System.EventHandler(this.удалитьToolStripMenuItem1_Click);
             // 
-            // webControl1
-            // 
-            this.webControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webControl1.Location = new System.Drawing.Point(0, 33);
-            this.webControl1.Size = new System.Drawing.Size(654, 417);
-            this.webControl1.TabIndex = 2;
-            // 
             // historyPage
             // 
             this.historyPage.Controls.Add(this.richTextBox1);
+            this.historyPage.Controls.Add(this.cleanbutton);
             this.historyPage.Location = new System.Drawing.Point(4, 29);
             this.historyPage.Name = "historyPage";
             this.historyPage.Size = new System.Drawing.Size(324, 384);
@@ -270,9 +265,28 @@ namespace WebBrow
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(324, 384);
-            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Size = new System.Drawing.Size(324, 343);
+            this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
+            // 
+            // cleanbutton
+            // 
+            this.cleanbutton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.cleanbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cleanbutton.Location = new System.Drawing.Point(0, 343);
+            this.cleanbutton.Name = "cleanbutton";
+            this.cleanbutton.Size = new System.Drawing.Size(324, 41);
+            this.cleanbutton.TabIndex = 0;
+            this.cleanbutton.Text = "очистить ";
+            this.cleanbutton.UseVisualStyleBackColor = true;
+            this.cleanbutton.Click += new System.EventHandler(this.cleanbutton_Click);
+            // 
+            // webControl1
+            // 
+            this.webControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webControl1.Location = new System.Drawing.Point(0, 33);
+            this.webControl1.Size = new System.Drawing.Size(654, 417);
+            this.webControl1.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -283,6 +297,7 @@ namespace WebBrow
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "MBrowser";
             this.toolStrip1.ResumeLayout(false);
@@ -322,6 +337,7 @@ namespace WebBrow
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem1;
         private System.Windows.Forms.TabPage historyPage;
+        private System.Windows.Forms.Button cleanbutton;
         private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

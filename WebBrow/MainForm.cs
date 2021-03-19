@@ -18,8 +18,8 @@ namespace WebBrow
             InitializeComponent();
             KeyDown += (s,e) => { if (e.KeyValue == (char)Keys.Enter) goButton.PerformClick(); };
             KeyDown += (s, e) => { if (e.KeyValue == (char)Keys.F5) plusButton.PerformClick(); };
-            tekylistBox.Items.AddRange(File.ReadAllLines("save-pages.txt"));
-            richTextBox1.Text = File.ReadAllText("history.txt");
+          //  tekylistBox.Items.AddRange(File.ReadAllLines("save-pages.txt"));
+          //  richTextBox1.Text = File.ReadAllText("history.txt");
         }
         private void backButton_Click(object sender, EventArgs e)
         {
@@ -43,7 +43,7 @@ namespace WebBrow
 
         private void plusButton_Click(object sender, EventArgs e)
         {
-            tekylistBox.Items.Add("New page");
+            tekylistBox.Items.Add(poisktoolStripTextBox1.Text);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -110,14 +110,26 @@ namespace WebBrow
 
         private void poisktoolStripTextBox1_TextChanged(object sender, EventArgs e)
         {
-            string[] history_searche = File.ReadAllLines("history.txt");
-            AutoCompleteStringCollection str = new AutoCompleteStringCollection();
-            foreach(string ste in history_searche)
+            try
             {
-                var ste2 = ste.Replace("yandex", "").Trim();
-                str.Add(ste2);
+                string[] history_searche = File.ReadAllLines("history.txt");
+                AutoCompleteStringCollection str = new AutoCompleteStringCollection();
+                foreach (string ste in history_searche)
+                {
+                    var ste2 = ste.Replace("yandex", "").Trim();
+                    str.Add(ste2);
+                }
+                poisktoolStripTextBox1.AutoCompleteCustomSource = str;
             }
-            poisktoolStripTextBox1.AutoCompleteCustomSource = str;
+            catch (Exception) { };
         }
+
+        private void cleanbutton_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText("hisrory.txt", "");
+            richTextBox1.Text = File.ReadAllText("histore.txt");
+        }
+
+        
     }
 }
